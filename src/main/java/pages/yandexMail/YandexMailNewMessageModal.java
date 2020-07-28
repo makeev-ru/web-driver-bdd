@@ -37,13 +37,25 @@ public class YandexMailNewMessageModal extends AbstractPage {
     @FindBy(xpath = "//a[@href='#inbox' and text()='Back to \"Inbox\"']")
     private WebElement backToInboxButton;
 
-    public YandexMailNewMessageModal fillNewMessageForm(String to, String subject, String body) {
-        waitForElementsClickable(toInput);
-        toInput.sendKeys(to);
+    public YandexMailNewMessageModal fillNewMessageForm(String send_to, String subject, String body) {
+        return enterAddressee(send_to).enterSubject(subject).enterBody(body);
+    }
 
+    public YandexMailNewMessageModal enterAddressee(String send_to) {
+        waitForElementsClickable(toInput);
+        toInput.sendKeys(send_to);
+
+        return new YandexMailNewMessageModal();
+    }
+
+    public YandexMailNewMessageModal enterSubject(String subject) {
         waitForElementsClickable(subjectInput);
         subjectInput.sendKeys(subject);
 
+        return new YandexMailNewMessageModal();
+    }
+
+    public YandexMailNewMessageModal enterBody(String body) {
         waitForElementsClickable(bodyInput);
         bodyInput.sendKeys(body);
 

@@ -9,7 +9,7 @@ import pages.yandexMail.YandexMailNewMessageModal;
 import java.util.ArrayList;
 import java.util.List;
 
-public class YandexMailTests {
+public class YandexMailOld {
     private static final String USERNAME = System.getenv("YANDEX_USERNAME");
     private static final String PASSWORD = System.getenv("YANDEX_PASSWORD");
 

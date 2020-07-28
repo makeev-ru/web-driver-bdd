@@ -10,13 +10,23 @@ Feature: Yandex mail
     Then The login is successful
 
 
-  Scenario: Verify draft content
+  Scenario Outline: Verify draft content
     When I login to Yandex Mail
     And I click on Compose button
-    And I fill out New Message Form
+    And I enter addressee: <test@yandex.ru>
+    And I enter subject: <subject>
+    And I enter body: <body>
+    And I click Close icon
     And I go to Drafts folder
     And I open recently created Draft message
     Then Message content is the same
+
+    Examples:
+      | test@yandex.ru       | subject        | body        |
+      | firstTest@yandex.ru  | First subject  | First body  |
+      | secondTest@yandex.ru | Second subject | Second body |
+      | ThirdTest@yandex.ru  | Third subject  | Third body  |
+
 
   Scenario: Mail disappeared from Drafts after sending
     When I login to Yandex Mail
@@ -42,18 +52,6 @@ Feature: Yandex mail
     When I login to Yandex Mail
     And I logoff from Yandex Mail
     Then Authorization page is opened
-
-
-#  Scenario Outline: Searching items on Amazon
-#    When I search <item>
-#    And I open item page
-#    Then Item price is lower $<price>
-#
-#    Examples:
-#      | item      | price |
-#      | iPhone SE | 200   |
-#      | iPhone 7  | 500   |
-#      | iPhone 8  | 700   |
 
 
 
